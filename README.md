@@ -37,28 +37,24 @@ A aplicação permite ao usuário gerenciar seu fluxo de trabalho diário de for
 * **Estruturas de Dados:** Uso de Lista de Dicionários para armazenar as tarefas em memória.
     * *Campos por Tarefa:* ID, descrição, prioridade, status, data (opcional).
 * **Validação de Dados:** Verificação de entradas do usuário e IDs existentes para garantir a integridade dos dados.
-* **Linguagem:** **[Sua Linguagem Aqui, ex: Python]**
+* **Linguagem:** **Python**
 
 ## 🏁 Como Executar o Projeto
 
 1.  Clone o repositório:
     ```bash
-    git clone [https://github.com/CalebeXimenes07/NOME-DO-SEU-REPOSITORIO.git](https://github.com/CalebeXimenes07/NOME-DO-SEU-REPOSITORIO.git)
+    git clone [https://github.com/CalebeXimenes07/projeto-to-do-list.git](https://github.com/CalebeXimenes07/projeto-to-do-list.git)
     ```
 
 2.  Navegue até o diretório do projeto:
     ```bash
-    cd NOME-DO-SEU-REPOSITORIO
+    cd projeto-to-do-list
     ```
 
 3.  Execute o programa:
     * *(Exemplo para Python)*
         ```bash
-        python nome_do_arquivo_principal.py
-        ```
-    * *(Exemplo para C#)*
-        ```bash
-        dotnet run
+        python main.py
         ```
 
 4.  Siga as instruções apresentadas no menu interativo.
