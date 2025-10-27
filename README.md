@@ -2,7 +2,7 @@
 
 Um sistema CLI (Command-Line Interface) completo para gerenciamento de tarefas pessoais, focado em organização, priorização e acompanhamento de progresso.
 
-**Status do Projeto:** 🚧 Concluído 🚧
+**Status do Projeto:** 🚧 Em andamento 🚧
 
 ## 📝 Sobre o Projeto
 
