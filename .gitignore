@@ -1,0 +1,14 @@
+# Ignora a pasta de ambiente virtual
+venv/
+.venv/
+
+# Ignora o cache do Python
+__pycache__/
+*.pyc
+
+# Ignora arquivos de configuração de IDEs (ex: VS Code)
+.vscode/
+
+# Ignora arquivos de segredos
+.env
+secrets.ini
