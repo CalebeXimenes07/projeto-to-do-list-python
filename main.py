@@ -1,12 +1,5 @@
-from database import adicionar_tarefas
-from database import listar_tarefas
+from interface import ToDoApp
 
-print("Testando código")
-entrada_descricao = input("Insira a descrição do sua tarefa: ")
-entrada_prioridade = input("Insira a prioridade da sua tarefa: ")
-
-adicionar_tarefas(entrada_descricao, entrada_prioridade)
-
-print("Lista das Tarefas inseridas:\n")
-
-listar_tarefas()
+if __name__ == "__main__":
+    app = ToDoApp()
+    app.mainloop()
