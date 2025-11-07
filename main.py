@@ -1,5 +1,4 @@
-from interface import ToDoApp
+from app import run_app
 
 if __name__ == "__main__":
-    app = ToDoApp()
-    app.mainloop()
+    run_app()

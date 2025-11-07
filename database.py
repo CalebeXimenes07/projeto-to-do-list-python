@@ -24,16 +24,80 @@ def conectar_bd():
         conexao_ok = False
         return False
 
-# Tentar conectar ao iniciar
-conectar_bd()
-
-def adicionar_tarefas(descricao, prioridade):
+def atualizar_tarefa(id_tarefa, descricao=None, prioridade=None, prazo=None, concluida=None):
     global conexao_ok
     if not conexao_ok and not conectar_bd():
         raise Exception("Não foi possível conectar ao banco de dados")
     
     try:
-        colecao.insert_one({"descricao": descricao, "prioridade": prioridade})
+        update_data = {}
+        if descricao is not None:
+            update_data["descricao"] = descricao
+        if prioridade is not None:
+            update_data["prioridade"] = prioridade
+        if prazo is not None:
+            update_data["prazo"] = prazo
+        if concluida is not None:
+            update_data["concluida"] = concluida
+            
+        if update_data:
+            resultado = colecao.update_one(
+                {"_id": id_tarefa}, 
+                {"$set": update_data}
+            )
+            if resultado.modified_count > 0:
+                print("Tarefa atualizada com sucesso!")
+                return True
+            else:
+                print("Tarefa não encontrada.")
+                return False
+        return False
+    except Exception as error:
+        print(f'Erro {error} ao atualizar tarefa!')
+        conexao_ok = False
+        return False
+
+def obter_estatisticas():
+    global conexao_ok
+    if not conexao_ok and not conectar_bd():
+        raise Exception("Não foi possível conectar ao banco de dados")
+    
+    try:
+        total = colecao.count_documents({})
+        pendentes = colecao.count_documents({"concluida": False})
+        concluidas = colecao.count_documents({"concluida": True})
+        
+        progresso = 0
+        if total > 0:
+            progresso = (concluidas / total) * 100
+            
+        return {
+            "total": total,
+            "pendentes": pendentes,
+            "concluidas": concluidas,
+            "progresso": round(progresso, 1)
+        }
+    except Exception as error:
+        print(f'Erro {error} ao obter estatísticas!')
+        conexao_ok = False
+        return {"total": 0, "pendentes": 0, "concluidas": 0, "progresso": 0}
+
+# Tentar conectar ao iniciar
+conectar_bd()
+
+def adicionar_tarefas(descricao, prioridade, prazo=None, concluida=False):
+    global conexao_ok
+    if not conexao_ok and not conectar_bd():
+        raise Exception("Não foi possível conectar ao banco de dados")
+    
+    try:
+        tarefa = {
+            "descricao": descricao, 
+            "prioridade": prioridade,
+            "prazo": prazo,
+            "concluida": concluida
+        }
+        colecao.insert_one(tarefa)
         print("Tarefa Adicionada!")
         return True
     except Exception as error:
@@ -41,15 +105,23 @@ def adicionar_tarefas(descricao, prioridade):
         conexao_ok = False
         raise
 
-def listar_tarefas():
+def listar_tarefas(filtro=None):
     global conexao_ok
     if not conexao_ok and not conectar_bd():
         raise Exception("Não foi possível conectar ao banco de dados")
     
     try:
-        tarefas = list(colecao.find())
+        query = {}
+        if filtro == "pendentes":
+            query = {"concluida": False}
+        elif filtro == "concluidas":
+            query = {"concluida": True}
+        elif filtro in ["Baixa", "Média", "Alta"]:
+            query = {"prioridade": filtro}
+        
+        tarefas = list(colecao.find(query))
         for tarefa in tarefas:
-            print(f"Descrição: {tarefa['descricao']}\nPrioridade: {tarefa['prioridade']}")
+            print(f"Descrição: {tarefa['descricao']}\nPrioridade: {tarefa['prioridade']}\nConcluída: {tarefa.get('concluida', False)}")
         return tarefas
     except Exception as error:
         print(f'Erro {error} ao listar tarefas!')

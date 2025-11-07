@@ -1,14 +1,12 @@
-# 🚀 Gerenciador de Tarefas (To-Do List) - Aplicação de Console
+# 🚀 Gerenciador de Tarefas (To-Do List) - Interface Gráfica (Tkinter)
 
-Um sistema CLI (Command-Line Interface) completo para gerenciamento de tarefas pessoais, focado em organização, priorização e acompanhamento de progresso.
+Aplicação GUI para gerenciamento de tarefas com **CustomTkinter**, seleção de datas via **TKcalendar** e persistência em **MongoDB**.
 
-**Status do Projeto:** 🚧 Em andamento 🚧
+**Status do Projeto:** ✅ Em uso
 
 ## 📝 Sobre o Projeto
 
-Este projeto é uma aplicação de console robusta que simula um sistema "To-Do List" completo. Foi desenvolvido para aplicar e solidificar conceitos fundamentais de desenvolvimento, incluindo operações **CRUD (Create, Read, Update, Delete)**, manipulação de estruturas de dados e design de interface de usuário em linha de comando.
-
-A aplicação permite ao usuário gerenciar seu fluxo de trabalho diário de forma eficiente, através de um menu interativo e intuitivo, com persistência de dados durante a execução.
+Este projeto fornece um gerenciador de tarefas moderno com interface gráfica, suporte a filtros, edição, conclusão e exclusão de tarefas. O prazo pode ser selecionado facilmente via calendário.
 
 ## ✨ Funcionalidades Principais
 
@@ -33,11 +31,20 @@ A aplicação permite ao usuário gerenciar seu fluxo de trabalho diário de for
 
 ## 🛠️ Requisitos Técnicos Aplicados
 
-* **Interface:** Menu interativo e formatado em Linha de Comando (CLI).
-* **Estruturas de Dados:** Uso de Lista de Dicionários para armazenar as tarefas em memória.
-    * *Campos por Tarefa:* ID, descrição, prioridade, status, data (opcional).
-* **Validação de Dados:** Verificação de entradas do usuário e IDs existentes para garantir a integridade dos dados.
+* **Interface:** GUI com CustomTkinter e TKcalendar.
+* **Banco de Dados:** MongoDB Atlas via PyMongo.
+* **Arquitetura:** Separação em camadas (UI, Serviços, Banco e Inicializador).
 * **Linguagem:** **Python**
+
+## 🧱 Arquitetura (Clean Code)
+
+- `interface.py`: Interface gráfica (GUI) e interação com o usuário.
+- `services.py`: Lógica de negócio e orquestração das operações de tarefas.
+- `database.py`: Acesso ao banco (MongoDB): conectar, inserir, atualizar, deletar, listar e estatísticas.
+- `app.py`: Inicializador da aplicação (`run_app`).
+- `main.py`: Entry-point simples que chama `run_app`.
+
+Essa divisão simplifica manutenção, testes e evolução do projeto.
 
 ## 🏁 Como Executar o Projeto
 
@@ -51,13 +58,17 @@ A aplicação permite ao usuário gerenciar seu fluxo de trabalho diário de for
     cd projeto-to-do-list
     ```
 
-3.  Execute o programa:
-    * *(Exemplo para Python)*
-        ```bash
-        python main.py
-        ```
+3.  Instale as dependências:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-4.  Siga as instruções apresentadas no menu interativo.
+4.  Execute o programa:
+    ```bash
+    python main.py
+    ```
+
+5.  Interaja com a interface gráfica. Use o botão 📅 para escolher prazos.
 
 ## 👨‍💻 Autor
 
