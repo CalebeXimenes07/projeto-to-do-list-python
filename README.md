@@ -72,6 +72,7 @@ Essa divisão simplifica manutenção, testes e evolução do projeto.
 
 ## 👨‍💻 Autor
 
-Feito por **Calebe Ximenes**
+Feito por **Calebe Ximenes e Iuri Costa**
 
 * **GitHub:** [CalebeXimenes07](https://github.com/CalebeXimenes07)
+* **GitHub:** [Iurizero](https://github.com/Iurizero)
